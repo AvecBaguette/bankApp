@@ -1,3 +1,5 @@
+package bank.app;
+
 public enum Currency {
     RON(0.23381),
     USD(1),

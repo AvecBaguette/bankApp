@@ -1,3 +1,8 @@
+package bank.app;
+
+import bank.app.BankAccountInterface;
+import bank.app.Currency;
+
 public class BankAccount implements BankAccountInterface {
     private static int counter = 1;
 
@@ -8,6 +13,10 @@ public class BankAccount implements BankAccountInterface {
     private Currency currency;
 
     private double sold;
+
+    public BankAccount() {
+
+    }
 
     public BankAccount(String ownerName, Currency currency, double sold) {
         this.id = counter;

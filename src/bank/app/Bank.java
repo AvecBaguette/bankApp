@@ -1,3 +1,7 @@
+package bank.app;
+
+import bank.app.BankAccountInterface;
+
 public class Bank {
 
     private BankAccountInterface[] bankAccounts = new BankAccountInterface[2];
@@ -23,11 +27,11 @@ public class Bank {
     public void deleteBankAccount(BankAccountInterface bankAccount) {
         int idFound = findAccount(bankAccount);
         if (idFound < 0) {
-            System.out.println("Bank Account not found");
+            System.out.println("Account not found");
             return;
         }
 
-        for (int i = idFound-1; i < counter - 1; i++) {
+        for (int i = idFound; i < counter - 1; i++) {
             bankAccounts[i] = bankAccounts[i + 1];
         }
         System.out.println();
@@ -36,24 +40,29 @@ public class Bank {
     }
 
     private int findAccount(BankAccountInterface bankaccount) {
-        for (int i = 0; i < counter; i++) {
-            if (bankAccounts[i] == bankaccount) {
-                return bankAccounts[i].getId();
+        int start = 0;
+        int end = counter - 1;
+
+        BankAccountInterface target = bankaccount;
+
+        while (start <= end) {
+            int middle = (end + start) / 2;
+
+            if (target.getId() == bankAccounts[middle].getId()) {
+                return middle;
+            } else if (target.getId() > bankAccounts[middle].getId()) {
+                start = middle + 1;
+            } else {
+                end = middle - 1;
             }
+
         }
 
         return -1;
     }
 
     public int getNumberOfTotalAccounts() {
-        System.out.println("Number of accounts registered is: ");
         return counter;
-    }
-
-    public void printAllAccounts(){
-        for (int i = 0; i < bankAccounts.length; i++) {
-            System.out.println(bankAccounts[i]);
-        }
     }
 
 }

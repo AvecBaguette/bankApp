@@ -1,3 +1,7 @@
+import bank.app.Bank;
+import bank.app.BankAccount;
+import bank.app.Currency;
+
 public class Test {
     public static void main(String[] args) {
         BankAccount EURacc = new BankAccount("AvecBaguette", Currency.EUR, 2000);
@@ -15,10 +19,6 @@ public class Test {
         System.out.println(noNameBank.getNumberOfTotalAccounts());
 
         noNameBank.deleteBankAccount(EURacc);
-
-        System.out.println(noNameBank.getNumberOfTotalAccounts());
-
-        noNameBank.registerBankAccount(EURacc);
 
         System.out.println(noNameBank.getNumberOfTotalAccounts());
 
@@ -46,9 +46,12 @@ public class Test {
 
         System.out.println(newAcc);
 
-        noNameBank.deleteBankAccount(EURacc);
+        noNameBank.deleteBankAccount(newAcc);
 
-        noNameBank.printAllAccounts();
+
+        BankAccount newAcc2 = new BankAccount("asdasd", Currency.EUR, 2000);
+
+        noNameBank.deleteBankAccount(newAcc2);
     }
 
 }
