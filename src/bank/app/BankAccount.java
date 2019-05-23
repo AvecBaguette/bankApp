@@ -36,14 +36,8 @@ public class BankAccount implements BankAccountInterface {
     }
 
     public void depositMoney(double sum, Currency currency) {
-        if (sum < 0) {
-            System.out.println("Invalid value");
-            return;
-        }
-
         double newSum = convertCurrency(sum, currency);
-
-        this.sold += newSum;
+        depositMoney(newSum);
     }
 
     private double convertCurrency(double sum, Currency currency) {
@@ -74,20 +68,8 @@ public class BankAccount implements BankAccountInterface {
     }
 
     public void withdrawMoney(double sum, Currency currency) {
-        if (sum < 0) {
-            System.out.println("Invalid value");
-            return;
-        }
-
         double newSum = convertCurrency(sum, currency);
-
-        if (newSum > this.sold) {
-            System.out.println("Not enough money in the account");
-            return;
-        }
-
-        System.out.println("Withdrawn: " + sum + " " + currency + " from " + ownerName);
-        this.sold -= newSum;
+        withdrawMoney(newSum);
     }
 
 

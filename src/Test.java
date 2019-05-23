@@ -52,6 +52,8 @@ public class Test {
         BankAccount newAcc2 = new BankAccount("asdasd", Currency.EUR, 2000);
 
         noNameBank.deleteBankAccount(newAcc2);
+
+        EURacc.withdrawMoney(123123);
     }
 
 }
