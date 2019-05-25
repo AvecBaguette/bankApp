@@ -4,10 +4,10 @@ import bank.app.Currency;
 
 public class Test {
     public static void main(String[] args) {
-        BankAccount EURacc = new BankAccount("AvecBaguette", Currency.EUR, 2000);
-        BankAccount USDacc = new BankAccount("Trump", Currency.USD, 1046);
-        BankAccount YENacc = new BankAccount("Naruto Uzumaki", Currency.YEN, 50356);
-        BankAccount RONacc = new BankAccount("Popescu", Currency.RON, 10);
+        BankAccount EURacc = new BankAccount("AvecBaguette", Currency.EUR, 2000, "52734675703819425");
+        BankAccount USDacc = new BankAccount("Trump", Currency.USD, 1046, "5273467703819425");
+        BankAccount YENacc = new BankAccount("Naruto Uzumaki", Currency.YEN, 50356, "5273467703819425");
+        BankAccount RONacc = new BankAccount("Popescu", Currency.RON, 10, "5273467703819425");
 
         Bank noNameBank = new Bank();
 
@@ -39,7 +39,7 @@ public class Test {
         EURacc.depositMoney(1);
         System.out.println(EURacc);
 
-        BankAccount newAcc = new BankAccount("asdasd", Currency.EUR, 2000);
+        BankAccount newAcc = new BankAccount("asdasd", Currency.EUR, 2000, "5273467703819425");
         noNameBank.registerBankAccount(newAcc);
 
         System.out.println(noNameBank.getNumberOfTotalAccounts());
@@ -49,11 +49,16 @@ public class Test {
         noNameBank.deleteBankAccount(newAcc);
 
 
-        BankAccount newAcc2 = new BankAccount("asdasd", Currency.EUR, 2000);
+        BankAccount newAcc2 = new BankAccount("asdasd", Currency.EUR, 2000, "5273467703819425");
 
         noNameBank.deleteBankAccount(newAcc2);
 
         EURacc.withdrawMoney(123123);
+
+        /*BankAccount EURacc = new BankAccount("AvecBaguette", Currency.EUR, 2000,"5273467703819425");
+        Bank noNameBank = new Bank();
+
+        noNameBank.registerBankAccount(EURacc);*/
     }
 
 }

@@ -6,6 +6,7 @@ import bank.app.Currency;
 public class BankAccount implements BankAccountInterface {
     private static int counter = 1;
 
+    private String creditCardNumber;
     private int id;
 
     private String ownerName;
@@ -18,14 +19,58 @@ public class BankAccount implements BankAccountInterface {
 
     }
 
-    public BankAccount(String ownerName, Currency currency, double sold) {
+    public BankAccount(String ownerName, Currency currency, double sold, String creditCardNumber) {
         this.id = counter;
         counter++;
-
         this.currency = currency;
         this.ownerName = ownerName;
         this.sold = sold;
+        this.creditCardNumber = creditCardNumber;
     }
+
+    public boolean verifyCreditCard(String creditCardNumber) {
+        if (creditCardNumber.length() < 13 || creditCardNumber.length() > 16) {
+            return false;
+        }
+        char[] cardNumberCharArray = creditCardNumber.toCharArray();
+
+        int[] cardNumberIntArray = new int[16];
+
+
+        for (int i = 0; i < cardNumberCharArray.length; i++) {
+            cardNumberIntArray[i] = cardNumberCharArray[i] - 48;
+        }
+
+        if (cardNumberIntArray[0] != 4 && cardNumberIntArray[0] != 5 && cardNumberIntArray[0] != 6 && (cardNumberIntArray[0] != 3 && cardNumberIntArray[1] != 7)) {
+            return false;
+        }
+        int digitSum = 0;
+        for (int i = cardNumberIntArray.length - 1; i >= 0; i--) {
+            if (i % 2 == 0) {
+                digitSum += doubleDigit(cardNumberIntArray[i]);
+            } else {
+
+                digitSum += cardNumberIntArray[i];
+            }
+        }
+
+        if (digitSum % 10 == 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private int doubleDigit(int digit) {
+        int sum = digit * 2;
+
+        if (sum / 10 != 0) {
+            sum = sum % 10 + (sum / 10) % 10;
+        }
+
+        return sum;
+    }
+
 
     public void depositMoney(double sum) {
         if (sum < 0) {
@@ -75,6 +120,10 @@ public class BankAccount implements BankAccountInterface {
 
     public int getId() {
         return id;
+    }
+
+    public String getCreditCardNumber() {
+        return creditCardNumber;
     }
 
     public String toString() {

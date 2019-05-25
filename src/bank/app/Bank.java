@@ -8,6 +8,10 @@ public class Bank {
     private int counter = 0;
 
     public void registerBankAccount(BankAccountInterface bankAccount) {
+        if (!bankAccount.verifyCreditCard(bankAccount.getCreditCardNumber())) {
+            System.out.println("Invalid Credit Card");
+            return;
+        }
         if (counter + 1 > bankAccounts.length) {
             dubleazaArray();
         }
